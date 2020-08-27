@@ -19,10 +19,19 @@ Route::get('/', function () {
 Route::view('/contact', 'contact');
 Route::view('/Edit', 'edit');
 Route::view('/calendrier','calend');
-route::view('/wahib','wahib');
+Route::view('/Calendrierdelentreprise','calend2');
+route::get('/Vueconge','CongeController@show');
+route::get('/validationurl','Eventcontroller@validation');
 Route::resource('event','Eventcontroller');
+Route::resource('eventt','Eventtcontroller');
 Auth::routes();
+route::put('validationurll','Eventcontroller@test')->name('validationEvents');
 route::get('/addeventurl','Eventcontroller@display');
 route::get('displaydata','Eventcontroller@show');
+route::delete('deletedata','Eventcontroller@destroy')->name('deleteEvents');
 route::put('/update','Eventcontroller@update')->name('UpdateEvents');
+route::post('/addequipe','EmployeController@store')->name('AddEquipes');
+route::delete('deletequipe','EmployeController@destroy')->name('deleteEquipe');
+
+route::get('employeurl','EmployeController@show');
 Route::get('/home', 'HomeController@index')->name('home');

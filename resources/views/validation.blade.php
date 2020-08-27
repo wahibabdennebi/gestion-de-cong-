@@ -17,11 +17,10 @@
                     <th>id</th>
                     <th>titre</th>
                     <th>type</th>
-                    <th>color</th>
                     <th>start_date</th>
                     <th>end_date</th>
-                    <th>update/edit</th>
-                    <th>delete</th>
+                    <th>valider</th>
+                    <th>rejeter</th>
                 </tr>
             
             
@@ -32,10 +31,17 @@
                     <td>{{ $event ->id}}</td>
                     <td>{{ $event ->titre}}</td>
                     <td>{{ $event ->type}}</td>
-                    <td>{{ $event ->color}}</td>
                     <td>{{ $event ->start_day}}</td>
                     <td>{{ $event ->end_day}}</td>
-                    <th><a href="{{ action('Eventcontroller@edit',$event['id'])}}">edit</a></th>
+                            <th> 
+                                <form method="post" action="{{route('validationEvents')}}" accept-charset="UTF-8">
+                                        @method('PUT')
+                                            @csrf
+                                        <input type="hidden" name="id" value="{{$event->id}}">
+                                        
+                                    <button type="submit" class="btn btn-success">valider</button>
+                                        </form>
+                                </th>
                     <th>
                             <form method="post" action="{{route('deleteEvents')}}"  accept-charset="UTF-8">
                                              @method('DELETE')

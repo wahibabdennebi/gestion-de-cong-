@@ -19,7 +19,7 @@
                   <div class="panel-body">
                     <div class="text-center vd_info-parent"> <img alt="example image" src="dist/img/user2-160x160.jpg"> </div>
                     
-                    <h2 class="font-semibold mgbt-xs-5">Mariah Caraiban</h2>
+                    <h2 class="font-semibold mgbt-xs-5">{{auth()->user()->name}}</h2>
                     
                         
                       
@@ -44,7 +44,7 @@
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">Nom:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->name}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>
@@ -65,7 +65,7 @@
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">Email:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->email}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>
@@ -75,7 +75,7 @@
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">date de naissance:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->birthday}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>
@@ -83,29 +83,29 @@
           
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
-              <label class="col-xs-5 control-label">sexe:</label>
-              <div class="col-xs-7 controls"></div>
+              <label class="col-xs-5 control-label">role</label>
+              <div class="col-xs-7 controls">{{auth()->user()->role}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">Phone:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->phone}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">Produit:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->product}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>  
           <div class="col-sm-6">
             <div class="row mgbt-xs-0">
               <label class="col-xs-5 control-label">Equipe:</label>
-              <div class="col-xs-7 controls"></div>
+              <div class="col-xs-7 controls">{{auth()->user()->team}}</div>
               <!-- col-sm-10 --> 
             </div>
           </div>

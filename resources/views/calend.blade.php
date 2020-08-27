@@ -41,6 +41,7 @@
      <div class="container-fluid">
       <div class="container">
   <div class="row">
+           
     <div class="col col-lg-2">
      <!-- Trigger the modal with a button -->
   <a  href="calendrier" type="button" class="btn btn-info btn-lg" >
@@ -50,21 +51,35 @@
     </div>
     <div class="col-sm">
       <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" >
+  <a href="Calendrierdelentreprise" type="button" class="btn btn-info btn-lg" >
   Calendrier de l'entreprise
-  </button>
+  </a>
 
     </div>
     
   </div>
+                @if($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+
+                              @if(Session::has('success'))
+                                  <div class="alert alert-success">
+                                    <p>{{ Session::get('success') }}</p>  
+                                  </div>
+                              @endif
   <br>
         <div class="row">
               <div class="col col-lg-2"> 
                 <a class="btn btn-success" href="/addeventurl" role="button">ADD Events</a>
                 </div>            
-                 <div class="col-sm">
-                <a class="btn btn-info" href="/displaydata" role="button">edit Events</a>          
+                 <div class="col col-lg-2">
+                <a class="btn btn-info" href="/displaydata" role="button">Edit Events</a>          
               </div>
+              
 
            </div>
 </div>

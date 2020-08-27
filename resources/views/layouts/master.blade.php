@@ -80,10 +80,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-            class="fas fa-th-large"></i></a>
-      </li>
+      
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -149,7 +146,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-          <a  href="validation.html" class="nav-link ">
+          <a  href="/validationurl" class="nav-link ">
               <i class="nav-icon far fa-image"></i>
               <p>
               Validation 
@@ -157,7 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="Vue congés.html" class="nav-link ">
+            <a href="/Vueconge" class="nav-link ">
               <i class="nav-icon far fa-image"></i>
               <p>
               Vue congés 
@@ -165,7 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="Employés.html" class="nav-link ">
+            <a href="/employeurl" class="nav-link ">
               <i class="nav-icon fas fa-users"></i>
               <p>
               Employés 

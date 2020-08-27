@@ -20,7 +20,11 @@ class CreateEventsTable extends Migration
             $table->string('color');
             $table->date('start_date');
             $table->date('end_date');
+            $table->string('end_date');
+            $table->integer('user_id')->unsigned();
+
             $table->timestamps();
+            $table->forgein('user_id')->references('id')->on('users');
         });
     }
 

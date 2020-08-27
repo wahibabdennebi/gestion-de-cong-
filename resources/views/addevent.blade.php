@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADDEvent</title>
-    
-    <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('layouts.master')
 
-</head>
-<body>
+
+
+ @section('content')
+ <!-- Content Header (Page header) -->
+ <div class="content-header">
+    
+      </div>
             <div class="contrainer">
                 <div class="row">
                     <div class="col-sm -8">
@@ -63,7 +59,7 @@
                                             <input type="date" class="form-control" name="start_date" class="date" placeholder="enter start date for event"><br/><br/>
                                             <label for="">enter end date for event</label>
                                             <input type="date" class="form-control" name="end_date" class="date" placeholder="enter end date for event"><br/><br/>
-                                        
+                                            <input type="hidden" name ="user_id" value="{{auth()->user()->id}}">
                                             <input type="submit" class="btn btn-primary" value="add event">
                                             <a class="btn btn-danger" href="/calendrier" role="button">Back</a>
                                         </form>
@@ -81,12 +77,8 @@
 
 
 
-                    <!-- jQuery -->
-        <script src="plugins/jquery/jquery.min.js"></script>
-        <!-- Bootstrap 4 -->
-        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.min.js"></script>
+            </div>
 
-</body>
-</html>
+    
+<!-- /.content -->
+@endsection

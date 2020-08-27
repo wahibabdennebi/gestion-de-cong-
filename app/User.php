@@ -15,9 +15,14 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table='users';
     protected $fillable = [
         'name', 'email', 'password','leave_balance','birthday','role','product','team','phone',
     ];
+    function myevent()
+    {
+        return $this->hasMany(App\Event);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
