@@ -24,7 +24,7 @@ route::get('/Vueconge','CongeController@show');
 route::get('/validationurl','Eventcontroller@validation');
 Route::resource('event','Eventcontroller');
 Route::resource('eventt','Eventtcontroller');
-Auth::routes();
+    Auth::routes();
 route::put('validationurll','Eventcontroller@test')->name('validationEvents');
 route::get('/addeventurl','Eventcontroller@display');
 route::get('displaydata','Eventcontroller@show');
@@ -32,6 +32,7 @@ route::delete('deletedata','Eventcontroller@destroy')->name('deleteEvents');
 route::put('/update','Eventcontroller@update')->name('UpdateEvents');
 route::post('/addequipe','EmployeController@store')->name('AddEquipes');
 route::delete('deletequipe','EmployeController@destroy')->name('deleteEquipe');
-
+route::post('/adduser','EmployeController@adduser')->name('adduser');
 route::get('employeurl','EmployeController@show');
+route::get('test','EmployeController@ajax');
 Route::get('/home', 'HomeController@index')->name('home');

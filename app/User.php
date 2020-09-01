@@ -23,6 +23,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(App\Event);
     }
+    public function equipes()
+    {
+        return $this->belongsToMany('App\Equipe','equipe_user','user_id','equipe_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
