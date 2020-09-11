@@ -21,7 +21,7 @@ class User extends Authenticatable
     ];
     function myevent()
     {
-        return $this->hasMany(App\Event);
+        return $this->hasMany('App\Event');
     }
     public function equipes()
     {

@@ -31,8 +31,8 @@
                     <td>{{ $event ->id}}</td>
                     <td>{{ $event ->titre}}</td>
                     <td>{{ $event ->type}}</td>
-                    <td>{{ $event ->start_day}}</td>
-                    <td>{{ $event ->end_day}}</td>
+                    <td>{{ $event ->start_date}}</td>
+                    <td>{{ $event ->end_date}}</td>
                             <th> 
                                 <form method="post" action="{{route('validationEvents')}}" accept-charset="UTF-8">
                                         @method('PUT')

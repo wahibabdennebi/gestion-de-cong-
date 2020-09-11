@@ -27,10 +27,10 @@
 						<tbody>
                                 <tr>
                                     
-                                    <td>{{ $event ->titre}}</td>
-                                    <td>{{ $event ->type}}</td>
-                                    <td>{{ $event ->start_day}}</td>
-                                    <td>{{ $event ->end_day}}</td>
+                                    <td>{{ $event->titre}}</td>
+                                    <td>{{ $event->type}}</td>
+                                    <td>{{$event->start_date}}</td>
+                                    <td>{{$event->end_date}}</td>
                                 </tr>
                         </tbody>
                              @endforeach
