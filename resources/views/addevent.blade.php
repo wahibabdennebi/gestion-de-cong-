@@ -21,47 +21,49 @@
                                         @method('PUT')
                                             @csrf
                                             <input type="hidden" name ="id" value="{{$events->id}}">
-                                            <label for="">enter Name of Event</label>
-                                            <input type="text" class="form-control" name="titre" placeholder="enter Name of Event" value="{{$events->titre }}" ><br/><br/>
-                                            <label for="">enter type of Event</label>
+                                            <label for="">Nom d'utilisateur </label>
+                                            <input type="text" class="form-control" name="titre" placeholder="enter Name of Event" value="{{$events->titre }}"  disabled="disabled"><br/><br/>
+                                            <label for="">entrer le type d'événement</label>
                                             <input type="text" class="form-control" name="type" placeholder="enter type of Event" value="{{$events->type }}"><br/><br/>
-                                            <label for="">enter color</label>
+                                            <label for="">entrer la couleur</label>
                                             <input type="color" class="form-control" name="color" placeholder="enter color"  value="{{$events->color}}"><br/><br/>
-                                            <label for="">enter start date for event</label>
+                                            <label for="">entrer la date de début de l'événement</label>
                                             <input type="date" class="form-control" name="start_date" class="date" placeholder="enter start date for event" value="{{$events->start_date}}"><br/><br/>
-                                            <label for="">enter end date for event</label>
+                                            <label for="">entrez la date de fin de l'événement</label>
                                             <input type="date" class="form-control" name="end_date" class="date" placeholder="enter end date for event"  value="{{$events->end_date }}"><br/><br/>
                                             
                                             <input type="submit" class="btn btn-primary" value="update">
-                                            <a class="btn btn-danger" href="/calendrier" role="button">Back</a>
+                                            <a class="btn btn-danger" href="/calendrier" role="button">Annuler</a>
                                         </form>
                                         
                                     </div>
                             
                              @else
-                                <div class="panel-heading">  
-                                    add event to calender
-                                </div>
-                                    <div class="panel-body">
+                                
+                                    <div class="card-header">
                             
-                                        <h1>add event</h1>
+                                        
                             
                                         <form method="POST" action="{{ action('Eventcontroller@store') }}" accept-charset="UTF-8">
                                         
                                             @csrf
-                                            <label for="">enter Name of Event</label>
-                                            <input type="text" class="form-control" name="titre" placeholder="enter Name of Event" ><br/><br/>
-                                            <label for="">enter type of Event</label>
-                                            <input type="text" class="form-control" name="type" placeholder="enter type of Event"><br/><br/>
-                                            <label for="">enter color</label>
+                                            <label for="">Nom d'utilisateur </label>
+                                            <input type="text" class="form-control" name="titre" placeholder="enter Name of Event" value="{{auth()->user()->name}}" ><br/><br/>
+                                            <label for="">entrer le type d'événement</label>
+                                            <select class="form-control" name="type" aria-label="Default select example">
+                                                <option name="type" value="Congé payant">Congé payant</option>
+                                                <option name="type" value="Récupération jour férié">Récupération jour férié</option>
+                                                <option  name="type"value="Autre">Autre</option>
+                                                </select>
+                                            <label for="">entrer la couleur</label>
                                             <input type="color" class="form-control" name="color" placeholder="enter color"><br/><br/>
-                                            <label for="">enter start date for event</label>
+                                            <label for="">entrer la date de début de l'événement</label>
                                             <input type="date" class="form-control" name="start_date" class="date" placeholder="enter start date for event"><br/><br/>
-                                            <label for="">enter end date for event</label>
+                                            <label for="">entrez la date de fin de l'événement</label>
                                             <input type="date" class="form-control" name="end_date" class="date" placeholder="enter end date for event"><br/><br/>
                                             <input type="hidden" name ="user_id" value="{{auth()->user()->id}}">
-                                            <input type="submit" class="btn btn-primary" value="add event">
-                                            <a class="btn btn-danger" href="/calendrier" role="button">Back</a>
+                                            <input type="submit" class="btn btn-primary" value="valider">
+                                            <a class="btn btn-danger" href="/calendrier" role="button">Annuler</a>
                                         </form>
                                  </div>
                             

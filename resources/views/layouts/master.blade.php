@@ -103,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="/home" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -113,28 +113,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
-                </a>
-
-              </li>
-            </ul>
+            
+            
           </li>
           <li class="nav-item">
              <!--  //<router-link to="/calendrier" class="nav-link ">  -->
@@ -167,6 +147,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <i class="nav-icon fas fa-users"></i>
               <p>
               Employés 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/roleurl" class="nav-link ">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+              role 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/soldeconge" class="nav-link ">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+              solde de congé 
               </p>
             </a>
           </li>
@@ -219,7 +215,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020-2011 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020-2021 <a href="https://adminlte.io">infolib</a>.</strong> All rights reserved.
   </footer>
 </div>
 @include('sweetalert::alert')

@@ -7,8 +7,6 @@
  <div class="content-header">
     
       </div>
-    
-      
     <!-- Main content -->
     <div class="content">
         <table class="table table-hover text-nowrap">
@@ -17,11 +15,10 @@
                     <th>id</th>
                     <th>titre</th>
                     <th>type</th>
-                    <th>color</th>
-                    <th>start_date</th>
-                    <th>end_date</th>
-                    <th>update/edit</th>
-                    <th>delete</th>
+                    <th>date de début</th>
+                    <th>date de fin</th>
+                    <th>modifier</th>
+                    <th>supprimer</th>
                 </tr>
             
             
@@ -32,17 +29,16 @@
                     <td>{{ $event ->id}}</td>
                     <td>{{ $event ->titre}}</td>
                     <td>{{ $event ->type}}</td>
-                    <td>{{ $event ->color}}</td>
-                    <td>{{ $event ->start_day}}</td>
-                    <td>{{ $event ->end_day}}</td>
-                    <th><a href="{{ action('Eventcontroller@edit',$event['id'])}}">edit</a></th>
+                    <td>{{ $event ->start_date}}</td>
+                    <td>{{ $event ->end_date}}</td>
+                    <th><a href="{{ action('Eventcontroller@edit',$event['id'])}}">modifier</a></th>
                     <th>
                             <form method="post" action="{{route('deleteEvents')}}"  accept-charset="UTF-8">
                                              @method('DELETE')
                                             {{ csrf_field() }}
                                             
                                 <input type="hidden" name="id" value="{{$event->id}}">
-                                    <button type="submit" class="btn btn-danger">delete</button>
+                                    <button type="submit" class="btn btn-danger">supprimer</button>
                             </form>
                     </th>
                 </tr>

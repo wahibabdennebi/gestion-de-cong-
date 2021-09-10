@@ -24,11 +24,11 @@ foreach ($events as $event){
         "color"=>$event->color
         
     ];
-    //dd($eventsArray);
+     
     array_push($eventsArray,$data);
   
     }
     return response()->json($eventsArray);
 }
-    //
+    
 }

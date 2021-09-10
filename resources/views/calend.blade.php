@@ -22,15 +22,61 @@
           editable :true,
           selectable :true,
           eventLimit :true,
-          events :'/event'
+          eventClick:true,
+          allDay:false,
+          displayEventTime: false,
+          events :'/event' ,
+          eventClick:function(info){
+            //console.log(info.event.start);
+          var numberDay=  calcBusinessDays(info.event.start,info.event.end);
+          var starDay=info.event.start ;
+          var endDay=info.event.end;
+          var name=info.event.title;
+            //alert(name+ starDay+ endDay + numberDay);
+            $('.modal').modal('show');
+            $(document).ready(function(){
+          $(".modal-body ").append( "<div id='test'><span id ='name'>"+name+"</span> <br> <span id ='numberDay'>"+numberDay+"</span> "+endDay+"</div> ");
+          $("#close").on("click",function(){
+        	$("#test").remove();
+    });
+
+});
+            
+
+          }
         });
         
         calendar.setOption('locale','fr');
+        
        
         calendar.render();
         //document.querySelector('.fc-dayGridMonth-button').innerHTML = "Mois";
 
       });
+      function calcBusinessDays(dDate1, dDate2) { // input given as Date objects
+  var iWeeks, iDateDiff, iAdjust = 0;
+  if (dDate2 < dDate1) return -1; // error code if dates transposed
+  var iWeekday1 = dDate1.getDay(); // day of week
+  var iWeekday2 = dDate2.getDay();
+  iWeekday1 = (iWeekday1 == 0) ? 7 : iWeekday1; // change Sunday from 0 to 7
+  iWeekday2 = (iWeekday2 == 0) ? 7 : iWeekday2;
+  if ((iWeekday1 > 5) && (iWeekday2 > 5)) iAdjust = 1; // adjustment if both days on weekend
+  iWeekday1 = (iWeekday1 > 5) ? 5 : iWeekday1; // only count weekdays
+  iWeekday2 = (iWeekday2 > 5) ? 5 : iWeekday2;
+
+  // calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+  iWeeks = Math.floor((dDate2.getTime() - dDate1.getTime()) / 604800000)
+
+  if (iWeekday1 < iWeekday2) { //Equal to makes it reduce 5 days
+    iDateDiff = (iWeeks * 5) + (iWeekday2 - iWeekday1)
+  } else {
+    iDateDiff = ((iWeeks + 1) * 5) - (iWeekday1 - iWeekday2)
+  }
+
+  iDateDiff -= iAdjust // take into account both days on weekend
+
+  return (iDateDiff  ); // add 1 because dates are inclusive
+}
     </script>
 
 @endsection
@@ -74,10 +120,10 @@
   <br>
         <div class="row">
               <div class="col col-lg-2"> 
-                <a class="btn btn-success" href="/addeventurl" role="button">ADD Events</a>
+                <a class="btn btn-success" href="/addeventurl" role="button">ajouter Événements</a>
                 </div>            
                  <div class="col col-lg-2">
-                <a class="btn btn-info" href="/displaydata" role="button">Edit Events</a>          
+                <a class="btn btn-info" href="/displaydata" role="button">Modifier événements</a>          
               </div>
               
 
@@ -94,7 +140,27 @@
     
         </div>
       </div>
+      <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+      
+      <div class="modal-footer">
+       
+        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     </div>
     <!-- /.content -->
+    
 @endsection

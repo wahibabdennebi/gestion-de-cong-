@@ -20,6 +20,7 @@ Route::view('/contact', 'contact');
 Route::view('/Edit', 'edit');
 Route::view('/calendrier','calend');
 Route::view('/Calendrierdelentreprise','calend2');
+
 route::get('/Vueconge','CongeController@show');
 route::get('/validationurl','Eventcontroller@validation');
 Route::resource('event','Eventcontroller');
@@ -38,3 +39,14 @@ route::post('test','EmployeController@ajax')->name("test");
 route::post('testt','EmployeController@name')->name("testt");
 route::post('deleteuser','EmployeController@deletename')->name('deleteuser');
 Route::get('/home', 'HomeController@index')->name('home');
+route::get('roleurl','RoleController@show');
+route::post('admin','RoleController@admin')->name("admin");
+route::post('user','RoleController@user')->name("user");
+route::get('search','CongeController@search');
+route::get('modifierSolde','EmployeController@getUser');
+
+Route::get('/soldeconge','SoldeCongeController@GetAllUsers');
+route::put('/update','SoldeCongeController@updateSoldeConge')->name('UpdateSolde');
+
+
+

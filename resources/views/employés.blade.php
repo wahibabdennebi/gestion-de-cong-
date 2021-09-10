@@ -6,9 +6,12 @@
     href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.21/datatables.min.css" />
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.21/datatables.min.js"></script>
-<br>
+
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
+       
 $(document).ready(function() {
     $('#table_id').DataTable();
 });/*
@@ -27,7 +30,7 @@ $(document).ready(function() {
             <div class="col col-lg-2">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                    add equipe
+                ajouter equipe
                 </button>
 
                 <!-- Modal -->
@@ -46,14 +49,14 @@ $(document).ready(function() {
 
                                     @csrf
 
-                                    <label for="">enter Name of Equipe</label>
+                                    <label for="">nom de l'équipe</label>
                                     <input type="text" class="form-control" name="name"
-                                        placeholder="enter Name of Equipe"><br /><br />
+                                        placeholder="saisir le nom de l'équipe"><br /><br />
                                         
                             </div>
                             <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="add equipe">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="ajouter equipe">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
                             </div>
                         </div>
@@ -95,9 +98,9 @@ $(document).ready(function() {
         <thead>
             <tr>
                 <th>id</th>
-                <th>name</th>
-                <th>add user</th>
-                <th>delete</th>
+                <th>Nom</th>
+                <th>ajouter utilisateur</th>
+                <th>supprimer</th>
 
             </tr>
 
@@ -113,7 +116,7 @@ $(document).ready(function() {
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary"  id="adduser" name="adduser"  value="{{$equipe->id}}" data-toggle="modal"
                         data-target="#example" onclick="adduser({{$equipe->id}})">
-                        add user
+                        ajouter utilisateur
                     </button>
                 </th>
 
@@ -124,7 +127,7 @@ $(document).ready(function() {
                         {{ csrf_field() }}
 
                         <input type="hidden" name="id" value="{{$equipe->id}}">
-                        <button type="submit" class="btn btn-danger">delete</button>
+                        <button type="submit" class="btn btn-danger">supprimer</button>
                     </form>
             </tr>
             
@@ -145,7 +148,7 @@ $(document).ready(function() {
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle"></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -155,7 +158,7 @@ $(document).ready(function() {
                            
                             {{ csrf_field() }}
                             
-                                <label for="">enter Name user</label>
+                                <label for="">Nom d'utilisateur</label>
                                 <select name="name" id="option">
                                 
                                 </select>
@@ -166,7 +169,7 @@ $(document).ready(function() {
                        
                         <div class="modal-footer" id="footer" >
                             
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                         </div>
                         </form>
 
@@ -178,25 +181,7 @@ $(document).ready(function() {
     <div id='table'>
        
     </div>
-                <!-- Modal -->
-                    <div class="modal fade" id="deleteuser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="delete-modal-body">
-                            
-                        </div>
-                        <div class="modal-footer" id="deletfooter">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" >Non</button>
-                        </div>
-                        </div> 
-                    </div>
-                    </div>
+               
     
 </div>
 
@@ -224,7 +209,7 @@ function GetUser(id) {
                    // $('#user_id').append(response.user_id);
                    //console.log(response);
                    //var data = JSON.parse(response);
-                   var head = "<table class='table table-hover text-nowrap'><thead><tr><th>id</th><th>name</th><th>email</th><th>delete</th></tr></thead><tbody>";
+                   var head = "<table class='table table-hover text-nowrap'><thead><tr><th>id</th><th>Nom</th><th>email</th><th>supprimer</th></tr></thead><tbody>";
                    var result="";
                    var len =response.length;
                    for(var i=0; i<len;i++){
@@ -246,10 +231,7 @@ function GetUser(id) {
                 }
                
 
-                  // console.log(result);
-                   
-                   //$("#table_id2").html(result);
-                  //console.log(result);
+                 
                 
             }
         
@@ -287,7 +269,7 @@ function GetUser(id) {
                    
              $("#option").append(result);
                    
-                   var button='<button type="submit"  class="btn btn-primary" onclick="iduser('+id+')">add user</button>'
+                   var button='<button type="submit"  class="btn btn-primary" onclick="iduser('+id+')">ajouter</button>'
                    $("#footer").append(button);
                    $('#example').modal('show');
                     console.log(response);
@@ -311,7 +293,7 @@ $.ajax({
         success: function(response) {
             $('#example').modal('hide');
          
-            console.log(response);
+           
 
         }
 })
@@ -319,16 +301,36 @@ $.ajax({
 };
 
 function deletuser(id){
-    $.ajax({
-    type:"POST",
-        url:"{{route('deleteuser')}}" ,  
-        dataType: 'json',
-        data: {
-            "_token": "{{ csrf_token() }}",
-            "deleteuser": id,
-            
-           
-        }  ,
+    sweetAlert({
+            title: "Delete?",
+            text: "Please ensure and then confirm!",
+            type: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: !0
+        })
+                $.ajax({
+                type:"POST",
+                    url:"{{route('deleteuser')}}" ,  
+                    dataType: 'json',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "deleteuser": id,
+                        
+                    
+                    }  ,
+                        success: function (response) {
+                        if (response.success === true) {
+                            sweetAlert("Done!", response.message, "success");
+
+                        } 
+                        else {
+                            sweetAlert("Error!", response.message, "error");
+                        }
+                                 }
+                });
+        /*
         success: function(response) {
             var len =response.length;
             var result="";
@@ -343,9 +345,9 @@ function deletuser(id){
                         $("#deletfooter").append(button);
                         $('#deleteuser').modal('show');
                         console.log(response);
-        }
+        }*/
 
-});
+    
 };
 
 //$('#deletename').click(function(){

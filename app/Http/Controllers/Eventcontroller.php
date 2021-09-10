@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use App\User;
-
+use DatePeriod;
+use datetime;
+use DateInterval,BusinessDayPeriodIterator ;
+use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 
@@ -44,7 +47,7 @@ public function display(){
 }
 
 public function store(Request $request){
-
+    //dd($request);
     $this->validate($request,[
     'titre' => 'required',
     'type' => 'required',
@@ -52,15 +55,16 @@ public function store(Request $request){
     'start_date' => 'required',
     'end_date' => 'required',
     'user_id' => 'required',
-
     ]);
+    $date = new DateTime($request->input ('end_date'));
     $events = new Event;
     $events->titre =$request->input ('titre');
     $events->type =$request->input ('type');
     $events->color =$request->input ('color');
     $events->start_date =$request->input ('start_date');
-    $events->end_date =$request->input ('end_date');
+    $events->end_date =$date->add(new DateInterval('P1D'));
     $events->user_id =$request->input ('user_id');
+   // dd($events);
     $events->save();
    return redirect ('/calendrier')->with('success','Events Added');
 }
@@ -109,11 +113,29 @@ public function update(Request $request){
     }
     function test(Request $request){
         $events =Event::find($request->id);
-        
             $events->valid='1';
+            $typeConge=$events->type;
+         $start_time = \Carbon\Carbon::parse($events->start_date);
+         $finish_time = \Carbon\Carbon::parse($events->end_date);
+         $diffTime= $start_time->diffInDays($finish_time );
+         //dd($diffTime);
+         $daysWithoutWeekend = $start_time->diffInDaysFiltered(function(Carbon $date) {
+            return !$date->isWeekend();
+            }, $finish_time);
+            $user=User::find($events->user_id);
+            if ($typeConge=='Congé payant'){
+                $user->leave_balance=$user->leave_balance-$daysWithoutWeekend;
+                $user->save();
+            }elseif ($typeConge== 'Récupération jour férié'){
+                $user->leave_balance=$user->leave_balance+$diffTime;
+                $user->save();
+            } else {
+                $user->save(); 
+            }
          
+              
         $events->save();
-        //dd($events);
+        
         return redirect ('/calendrier');
 
         

@@ -86,12 +86,29 @@ class EmployeController extends Controller
 }
                 public function deletename(Request $request){
                     
-                    //$equipesusers=EquipeUser::Where('user_id',$request->deleteuser)->get(); 
-                    //$result= array();
-                             $user=User::Where('id',$request->deleteuser)->get();
-                            //array_push($result,$user); 
-                         return response()->json($user);
-                         Alert::question('Question Title', 'Question Message');
-                }
+                   
+                    $equipesusers=EquipeUser::Where('user_id',$request->deleteuser)->delete();
+                       // check data deleted or not
+                        if ($equipesusers== 1) {
+                            $success = true;
+                            $message = "User deleted successfully";
+                        } else {
+                            $success = true;
+                            $message = "User not found";
+                        }
+
+                        //  Return response
+                        return response()->json([
+                            'success' => $success,
+                            'message' => $message,
+                        ]);
+
+                         }     
+                         public function getUser(Request $request)
+                         {
+                             dd($request);
+                         }                 
+                         
+                
 
 }

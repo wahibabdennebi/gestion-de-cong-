@@ -96,7 +96,7 @@
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('phone') }}</label>
                                 <div class="col-md-6">
                                     <input id="phone" type="text" class="form-control  " name="phone" autofocus>
-
+                                    
 
                                 </div> 
                             </div>
