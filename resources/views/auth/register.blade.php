@@ -68,14 +68,7 @@
 
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('role') }}</label>
-                                <div class="col-md-6">
-                                    <input id="role" type="text" class="form-control  " name="role" autofocus>
-
-
-                                </div> 
-                            </div>
+                            
                             <div class="form-group row">
                                 <label for="product" class="col-md-4 col-form-label text-md-right">{{ __('product') }}</label>
                                 <div class="col-md-6">

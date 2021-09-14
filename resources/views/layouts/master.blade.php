@@ -126,6 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @if(auth()->user()->role =='admin')
           <li class="nav-item">
           <a  href="/validationurl" class="nav-link ">
               <i class="nav-icon far fa-image"></i>
@@ -134,6 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @endif
           <li class="nav-item">
             <a href="/Vueconge" class="nav-link ">
               <i class="nav-icon far fa-image"></i>
@@ -142,6 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          @if(auth()->user()->role =='admin')
           <li class="nav-item">
             <a href="/employeurl" class="nav-link ">
               <i class="nav-icon fas fa-users"></i>
@@ -150,6 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="/roleurl" class="nav-link ">
               <i class="nav-icon fas fa-users"></i>
@@ -158,6 +162,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
             <a href="/soldeconge" class="nav-link ">
               <i class="nav-icon fas fa-users"></i>
@@ -166,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
           </li>
-         
+          @endif
           
           <li class="nav-item">
           <div class="nav-item" aria-labelledby="navbarDropdown">

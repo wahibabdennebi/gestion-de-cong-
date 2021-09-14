@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Acaronlex\LaravelCalendar\ServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
 
         /*
