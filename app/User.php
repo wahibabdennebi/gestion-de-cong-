@@ -29,6 +29,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Equipe','equipe_user','user_id','equipe_id');
     }
 
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        return $this->email_address;
+
+        // Return name and email address...
+        return [$this->email_address => $this->name];
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

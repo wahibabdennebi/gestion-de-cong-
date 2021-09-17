@@ -10,6 +10,9 @@ use datetime;
 use DateInterval,BusinessDayPeriodIterator ;
 use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use App\Notifications\InvoicePaid;
+use App\Mail\MailtrapExample;
+use Illuminate\Support\Facades\Mail;
 
 
 class Eventcontroller extends Controller
@@ -34,7 +37,7 @@ foreach ($events as $event){
         "user_id"=>$event->user_id
         
     ];
-    //dd($eventsArray);
+   // dd($eventsArray);
     array_push($eventsArray,$data);
   
     }
@@ -133,7 +136,8 @@ public function update(Request $request){
                 $user->save(); 
             }
          
-              
+            Mail::to($user->email)->send(new MailtrapExample($user,$events));
+          // $user->notify(new InvoicePaid()) ;
         $events->save();
         
         return redirect ('/calendrier');

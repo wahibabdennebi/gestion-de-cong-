@@ -35,9 +35,9 @@
             //alert(name+ starDay+ endDay + numberDay);
             $('.modal').modal('show');
             $(document).ready(function(){
-          $(".modal-body ").append( "<div id='test'><span id ='name'>"+name+"</span> <br> <span id ='numberDay'>"+numberDay+"</span> "+endDay+"</div> ");
+          $(".modal-body ").append("<div id='testt'><span id ='name'>"+name+"</span> <br> <span id ='numberDay'>"+numberDay+"</span></div>");
           $("#close").on("click",function(){
-        	$("#test").remove();
+        	$("#testt").remove();
     });
 
 });
