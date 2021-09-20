@@ -44,11 +44,14 @@ class EmployeController extends Controller
 
         public function adduser(Request $request){
                 // $test=explode('_',$request->name);
-                 $equipesusers=new EquipeUser ;   
+                $user=User::find($request->iduser);
+                $user->equipe_id=$request->adduser;
+                $user->save();
+                /* $equipesusers=new EquipeUser ;   
                 $equipesusers->user_id=$request->iduser;
                 $equipesusers->equipe_id=$request->adduser; 
-               $equipesusers->save();
-               return response($equipesusers);
+               $equipesusers->save();*/
+               return response($user);
                Alert::success('Success ','Users successfully added');
                return redirect ('employeurl')->withSuccessMessage('succesfully added') ;
                
@@ -57,39 +60,43 @@ class EmployeController extends Controller
 
         public function ajax(Request $request)
         {
-            
-           $equipesusers=EquipeUser::Where('equipe_id',$request->id)->get();
+            $users=User::where('equipe_id',$request->id)->get();
+        // $equipesusers=EquipeUser::Where('equipe_id',$request->id)->get();
            $result= array();
-
-            foreach($equipesusers as $equipeuser)
+            foreach($users as $user)
             {
-
-                $user=User::find($equipeuser->user_id);
                 array_push($result,$user);
             }
             return response()->json($result);
         }
 
         public function name(Request $request){
-        
-            $equipesusers=EquipeUser::Where('equipe_id',$request->adduser)->get();
+          /*  $equipesusers=EquipeUser::Where('equipe_id',$request->adduser)->get();
             $result= array();
             $test=array();
             foreach($equipesusers as $equipeuser)
             { 
                array_push($test,$equipeuser->user_id);
-             }
-        $users=User::whereNotIn('id',$test)->get();
-             return response()->json($users);
+             }*/
+             //dd($request);
+             $result= array();
+        $users=User::where('equipe_id',0)->get();
+        foreach($users as $user)
+        { 
+           array_push($result,$user);
+           
+         }
+        
+      //  dd($result);
+             return response()->json($result);
             
-
 }
                 public function deletename(Request $request){
-                    
-                   
-                    $equipesusers=EquipeUser::Where('user_id',$request->deleteuser)->delete();
+                    $user= User::find($request->id);
+                    $user->equipe_id='0';
+                    $user->save();
                        // check data deleted or not
-                        if ($equipesusers== 1) {
+                        if ($user) {
                             $success = true;
                             $message = "User deleted successfully";
                         } else {

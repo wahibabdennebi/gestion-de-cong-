@@ -18,17 +18,18 @@ class User extends Authenticatable
      */
     protected $table='users';
     protected $fillable = [
-        'name', 'email', 'password','leave_balance','birthday','role','product','team','phone',
+        'name', 'email', 'password','leave_balance','birthday','role','product','team','phone','equipe_id'
     ];
     function myevent()
     {
         return $this->hasMany('App\Event');
     }
+    /*
     public function equipes()
     {
         return $this->belongsToMany('App\Equipe','equipe_user','user_id','equipe_id');
     }
-
+*/
     public function routeNotificationForMail($notification)
     {
         // Return email address only...

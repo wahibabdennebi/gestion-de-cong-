@@ -257,6 +257,7 @@ function GetUser(id) {
                     "adduser": id,
                 },
                 success: function(response) {
+                    console.log(response);
                   var len =response.length;
                     var result="";
                     for(var i=0; i<len;i++){
@@ -316,9 +317,7 @@ function deletuser(id){
                     dataType: 'json',
                     data: {
                         "_token": "{{ csrf_token() }}",
-                        "deleteuser": id,
-                        
-                    
+                        "id": id,
                     }  ,
                         success: function (response) {
                         if (response.success === true) {

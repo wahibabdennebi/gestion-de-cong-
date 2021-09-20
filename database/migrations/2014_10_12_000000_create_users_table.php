@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('product');
             $table->string('team');
             $table->string('phone');
+            $table->string('equipe_id');
             $table->rememberToken();
             $table->timestamps();
         });

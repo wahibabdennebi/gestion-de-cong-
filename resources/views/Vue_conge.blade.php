@@ -12,24 +12,27 @@
     <!-- Main content -->
     <div class="content">
         <div class="col-md-4">
-            <form action="/search" method="get">
+            <form class="my-sm-50" action="/search" method="get">
                 <div class="from-group">
-                    <input type="search" name="name" class="from-control">
+                    <input class="col col-lg-2" type="search" name="name" class="from-control">
                     <input type="date" name="firstDate" class="from-control">
                     <input type="date" name="secondDate" class="from-control">
                     <span class="from-groupe-btn">
                         <button type="submit" class="btn btn-primary">search</button>
                     </span>
-
                 </div>
                  
-            </form>
+            
         </div>
-					<table class="table table-hover text-nowrap">
+        <div class="row justify-content-end mb-50 ">
+            <button class="col-sm-2 btn btn-primary" name="affiche" value="1" type="submit">afficher tout</button>
+            <a class="col-sm-2 btn btn-primary" href="/Vueconge">retour</a>
+        </div>
+        </form>		<table class="table table-hover text-nowrap">
 						    <thead>
                                     <tr class="table100-head">
                                         
-                                        <th>titre</th>
+                                        <th>Nom d'utilisateur</th>
                                         <th>type</th>
                                         
                                         <th>date de début</th>

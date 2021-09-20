@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use App\User;
+use App\Equipe;
 use DatePeriod;
 use datetime;
 use DateInterval,BusinessDayPeriodIterator ;
@@ -12,7 +13,9 @@ use Carbon\Carbon;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 use App\Notifications\InvoicePaid;
 use App\Mail\MailtrapExample;
+use App\Mail\ValidationConge;
 use Illuminate\Support\Facades\Mail;
+
 
 
 class Eventcontroller extends Controller
@@ -68,7 +71,19 @@ public function store(Request $request){
     $events->end_date =$date->add(new DateInterval('P1D'));
     $events->user_id =$request->input ('user_id');
    // dd($events);
-    $events->save();
+  
+   $events->save();
+    $id=$events->user_id;
+    $user=User::find($id);
+    $id=$user->equipe_id;
+    $users=User::where('equipe_id',$id)->get();
+    foreach ($users as $user) {
+        if($user->role=='admin'){
+       $end_date=\Carbon\Carbon::parse($events->end_date)->format('d-m-Y');
+            Mail::to($user->email)->send(new ValidationConge($user,$events,$end_date));
+        }
+    }
+    
    return redirect ('/calendrier')->with('success','Events Added');
 }
 public function show()

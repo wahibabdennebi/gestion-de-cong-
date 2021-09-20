@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'product' => $data['product'],
             'team' => $data['team'],
             'phone' => $data['phone'],
+            'equipe_id' => '0',
         ]);
     }
 }
