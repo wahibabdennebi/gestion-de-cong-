@@ -49,34 +49,44 @@ return response()->json($eventsArray);
 public function display(){
   
     $events=null;
-    return view('addevent',compact('events'));
+    if(auth()->user()->role=='admin'){$users=User::where('equipe_id',auth()->user()->equipe_id)->get();
+        //dd($users);
+        return view('addevent',compact('events','users'));
+    }else{
+        return view('addevent',compact('events'));
+    }
+    
+   
 }
 
 public function store(Request $request){
     //dd($request);
     $this->validate($request,[
-    'titre' => 'required',
     'type' => 'required',
-    'color' => 'required',
     'start_date' => 'required',
     'end_date' => 'required',
     'user_id' => 'required',
     ]);
     $date = new DateTime($request->input ('end_date'));
     $events = new Event;
-    $events->titre =$request->input ('titre');
     $events->type =$request->input ('type');
-    $events->color =$request->input ('color');
+    if( $request->type=='Congé payant'){
+        $events->color ='red';
+    }elseif($request->type=='Récupération jour férié'){
+        $events->color ='green';
+    }else{
+        $events->color ='black';
+    }
     $events->start_date =$request->input ('start_date');
     $events->end_date =$date->add(new DateInterval('P1D'));
     $events->user_id =$request->input ('user_id');
-   // dd($events);
-  
-   $events->save();
     $id=$events->user_id;
     $user=User::find($id);
-    $id=$user->equipe_id;
-    $users=User::where('equipe_id',$id)->get();
+    $events->titre =$user->name;
+    $events->save(); 
+    //$id=$user->equipe_id;
+    $users=User::where('equipe_id',auth()->user()->equipe_id)->get();
+   // dd($users);
     foreach ($users as $user) {
         if($user->role=='admin'){
        $end_date=\Carbon\Carbon::parse($events->end_date)->format('d-m-Y');
@@ -86,33 +96,41 @@ public function store(Request $request){
     
    return redirect ('/calendrier')->with('success','Events Added');
 }
-public function show()
-{
 
-    $events =Event::Where([['valid','0'],['user_id',auth()->user()->id]])->get();
-    return view('display')->with ('events',$events);
-}
-public function edit($id){
-    $events = Event::find($id);
-    return view('addevent',compact('events','id'));
-    
-}
+public function show()
+        {
+
+            $events =Event::Where([['valid','0'],['user_id',auth()->user()->id]])->get();
+            return view('display')->with ('events',$events);
+        }
+
+    public function edit($id)
+     { $events = Event::find($id);
+        //dd($events);
+        return view('addevent',compact('events','id'));
+       }
+
 public function update(Request $request){
-    //dd($request);
+   //dd($request);
     $this->validate($request,[
+        'id' => 'required',
         'titre' => 'required',
         'type' => 'required',
         'color' => 'required',
         'start_date' => 'required',
         'end_date' => 'required',
-    
+        'user_id' => 'required',
+
         ]);
-        $events = Event::find($request->id); 
-        $events->titre =$request->titre;
-        $events->type =$request->type;
-        $events->color =$request->color;
-        $events->start_date =$request->start_date;
-        $events->end_date =$request->end_date;
+       // $date = new DateTime($request->end_date);
+        $events = Event::find($request->id);
+        $date = new DateTime($request->input ('end_date'));
+        $events->titre =$request->input ('titre');
+        $events->type =$request->input ('type');
+        $events->color =$request->input ('color');
+        $events->start_date =$request->input ('start_date');
+        $events->end_date =$date->add(new DateInterval('P1D'));
+        $events->user_id =$request->input ('user_id');
         $events->save();
         return redirect ('/calendrier')->with('success','Events updated');
 }
@@ -158,6 +176,10 @@ public function update(Request $request){
         return redirect ('/calendrier');
 
         
+    }
+    public function editProfil($id){
+        $user=User::Where('id',$id)->get();
+        return view('edit')->with ('user',$user);
     }
 
 }

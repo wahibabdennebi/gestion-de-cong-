@@ -12,13 +12,13 @@
         <table class="table table-hover text-nowrap">
             <thead>
                  <tr>
-                    <th>id</th>
-                    <th>titre</th>
-                    <th>type</th>
-                    <th>date de début</th>
-                    <th>date de fin</th>
-                    <th>modifier</th>
-                    <th>supprimer</th>
+                    
+                    <th>Titre</th>
+                    <th>Type</th>
+                    <th>Date de début</th>
+                    <th>Date de fin</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
                 </tr>
             
             
@@ -26,19 +26,19 @@
             @foreach($events as $event)
              <tbody> 
                 <tr>
-                    <td>{{ $event ->id}}</td>
+                    
                     <td>{{ $event ->titre}}</td>
                     <td>{{ $event ->type}}</td>
                     <td>{{ $event ->start_date}}</td>
                     <td>{{ $event ->end_date}}</td>
-                    <th><a href="{{ action('Eventcontroller@edit',$event['id'])}}">modifier</a></th>
+                    <th><a href="{{ action('Eventcontroller@edit',$event['id'])}}"><i class="fas fa-edit"></i></a></th>
                     <th>
                             <form method="post" action="{{route('deleteEvents')}}"  accept-charset="UTF-8">
                                              @method('DELETE')
                                             {{ csrf_field() }}
                                             
                                 <input type="hidden" name="id" value="{{$event->id}}">
-                                    <button type="submit" class="btn btn-danger">supprimer</button>
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                             </form>
                     </th>
                 </tr>

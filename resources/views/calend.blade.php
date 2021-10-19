@@ -36,7 +36,7 @@
             $('.modal').modal('show');
             $(document).ready(function(){
           $(".modal-body ").append("<div id='testt'><span id ='name'>"+name+"</span> <br> <span id ='numberDay'>"+numberDay+"</span></div>");
-          $("#close").on("click",function(){
+          $("#close,.close").on("click",function(){
         	$("#testt").remove();
     });
 
@@ -120,10 +120,10 @@
   <br>
         <div class="row">
               <div class="col col-lg-2"> 
-                <a class="btn btn-success" href="/addeventurl" role="button">ajouter Événements</a>
+                <a class="btn btn-success" href="/addeventurl" role="button"><i class="fas fa-calendar-plus"> Congé</i> </a>
                 </div>            
                  <div class="col col-lg-2">
-                <a class="btn btn-info" href="/displaydata" role="button">Modifier événements</a>          
+                <a class="btn btn-info" href="/displaydata" role="button"><i class="fas fa-edit">Congé</i> </a>          
               </div>
               
 
@@ -144,8 +144,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

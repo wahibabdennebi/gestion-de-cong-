@@ -14,8 +14,8 @@
         <table class="table table-hover text-nowrap">
             <thead>
                  <tr>
-                    <th>id</th>
-                    <th>titre</th>
+                    
+                    <th>Nom d'utilisateur</th>
                     <th>type</th>
                     <th>date de début</th>
                     <th>date de fin</th>
@@ -28,7 +28,7 @@
             @foreach($events as $event)
              <tbody> 
                 <tr>
-                    <td>{{ $event ->id}}</td>
+                   
                     <td>{{ $event ->titre}}</td>
                     <td>{{ $event ->type}}</td>
                     <td>{{ $event ->start_date}}</td>
@@ -39,7 +39,7 @@
                                             @csrf
                                         <input type="hidden" name="id" value="{{$event->id}}">
                                         
-                                    <button type="submit" class="btn btn-success">valider</button>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-calendar-check"></i></button>
                                         </form>
                                 </th>
                     <th>
@@ -48,7 +48,7 @@
                                             {{ csrf_field() }}
                                             
                                 <input type="hidden" name="id" value="{{$event->id}}">
-                                    <button type="submit" class="btn btn-danger">supprimer</button>
+                                    <button type="submit" class="btn btn-danger"><i class="fas fa-calendar-times"></i></button>
                             </form>
                     </th>
                 </tr>

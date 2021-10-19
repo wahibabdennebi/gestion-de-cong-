@@ -1,24 +1,49 @@
 @extends('layouts.master')
 @section('scripts')
 
-
-<link rel="stylesheet" type="text/css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.21/datatables.min.css" />
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.21/datatables.min.js"></script>
 
 <script src="http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script>
-       
-$(document).ready(function() {
-    $('#table_id').DataTable();
-});/*
-$(document).ready(function() {
-    $('#table_id2').DataTable();
-});*/
-</script>
+    <script>
+        $(document).ready(function() {
+    $('#table_id').DataTable(
+        {
+            "language":{
+            "decimal":        "",
+    "emptyTable":     "No data available in table",
+    "info":           "Affichage _START_ a _END_ de _TOTAL_ entrées",
+    "infoEmpty":      "Showing 0 to 0 of 0 entrées",
+    "infoFiltered":   "(filtered from _MAX_ total entrées)",
+    "infoPostFix":    "",
+    "thousands":      ",",
+    "lengthMenu":     "afficher _MENU_ entrées",
+    "loadingRecords": "Chargement...",
+    "processing":     "Traitement...",
+    "search":         "recherche:",
+    "zeroRecords":    "Aucune donnée correspondante trouvée",
+    "paginate": {
+        "first":      "First",
+        "last":       "Last",
+        "next":       "suivant",
+        "previous":   "Précédent"
+    },
+    "aria": {
+        "sortAscending":  ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+
+        },
+        }
+    );
+});
+    </script>
 @endsection
 
 @section('content')
@@ -94,10 +119,10 @@ $(document).ready(function() {
 <!-- Main content -->
 <div class="content">
 
-    <table id="table_id" class="display">
+    <table   id="table_id" class="display">
         <thead>
             <tr>
-                <th>id</th>
+                
                 <th>Nom</th>
                 <th>ajouter utilisateur</th>
                 <th>supprimer</th>
@@ -105,18 +130,17 @@ $(document).ready(function() {
             </tr>
 
         </thead>
-        @foreach($equipes as $equipe)
+       
         <tbody>
+        @foreach($equipes as $equipe)
             <tr>
-
-                <td id="test">{{ $equipe->id}}</td>
                 <td> <button id="id" name='id' value="{{$equipe->id}}"
                         onclick="GetUser({{$equipe->id}})">{{$equipe->name}}</button></td>
                 <th>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary"  id="adduser" name="adduser"  value="{{$equipe->id}}" data-toggle="modal"
                         data-target="#example" onclick="adduser({{$equipe->id}})">
-                        ajouter utilisateur
+                        <i class="fas fa-user-plus"></i>
                     </button>
                 </th>
 
@@ -127,7 +151,7 @@ $(document).ready(function() {
                         {{ csrf_field() }}
 
                         <input type="hidden" name="id" value="{{$equipe->id}}">
-                        <button type="submit" class="btn btn-danger">supprimer</button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </form>
             </tr>
             
@@ -135,11 +159,11 @@ $(document).ready(function() {
                         </form>
                     </div>
                 </div>
-
+                @endforeach
         </tbody>
        
         
-        @endforeach
+        
         <!-- Modal -->
         
      <div class="modal fade" id="example" tabindex="-1" role="dialog"
@@ -169,7 +193,7 @@ $(document).ready(function() {
                        
                         <div class="modal-footer" id="footer" >
                             
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary" id="fermerbtn" data-dismiss="modal">Fermer</button>
                         </div>
                         </form>
 
@@ -186,7 +210,6 @@ $(document).ready(function() {
 </div>
 
 <script type="text/javascript" >
-
 function GetUser(id) {
         var mytable=document.getElementById('table');
                    var displaysting =mytable.style.display;
@@ -218,7 +241,7 @@ function GetUser(id) {
                        var id=response[i].id;
                        var name=response[i].name;
                        var email=response[i].email;
-                       var button='<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteuser" id="iduser" onclick="deletuser('+id+')">delete</button>';
+                       var button='<button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteuser" id="iduser" onclick="deletuser('+id+')"><i class="fas fa-user-minus"></i></button>';
                        var tr_str = '<tr>'+'<td>'+ id + '</td>'+'<td>'+ name +'</td>'+'<td >'+ email+'</td>'+ '<td >' + button + '</td>' +'</tr>';
                   result =tr_str+ result;
                    // var result=head+result
@@ -227,7 +250,7 @@ function GetUser(id) {
                    result = head+result+'</tbody>'+'</table>';
                    $("#table").append(result);
                    mytable.style.display='block';
-                   console.log(result);
+                   
                 }
                
 
@@ -239,14 +262,9 @@ function GetUser(id) {
             )
             };
             
-
 };
-
-
-
 </script>
 <script >
-    
        function adduser(id) {
         $.ajax({
             type:"POST",
@@ -264,20 +282,28 @@ function GetUser(id) {
                         var name=response[i].name;
                         var iduser=response[i].id;
 
-                        var opt ="<option id='add' name='add' value="+iduser+">"+name+"</option>";
+                        var opt ="<option id='addopt' name='add' value="+iduser+">"+name+"</option>";
                         result =opt+ result;
                     }
                    
              $("#option").append(result);
+              
                    
-                   var button='<button type="submit"  class="btn btn-primary" onclick="iduser('+id+')">ajouter</button>'
+                   var button='<button type="submit" id="btnAjouter"  class="btn btn-primary" onclick="iduser('+id+')">ajouter</button>'
                    $("#footer").append(button);
                    $('#example').modal('show');
-                    console.log(response);
+
+                   $(document).on("click","#fermerbtn",function(){
+                       for(var i=0; i<len;i++){
+                        $('#addopt').remove();
+                       }
+    	        $('#btnAjouter').remove();
+                   // $('#addopt').remove();
+                });  
         }
 
             }) 
-        
+            
        };
     //$('#submit').click(function({
         function iduser(id){
@@ -328,35 +354,8 @@ function deletuser(id){
                             sweetAlert("Error!", response.message, "error");
                         }
                                  }
-                });
-        /*
-        success: function(response) {
-            var len =response.length;
-            var result="";
-            for(var i=0; i<len;i++){
-                        var name=response[i].name;
-                        var iduser=response[i].id;
-                        var opt ="<strong>"+name+"</strong>";
-                        result =opt
-            }
-                        $("#delete-modal-body").append(result);
-                        var button = "<button type='button' class='btn btn-primary' id='deletename'  name='deletename' value="+iduser+">Oui</button>";
-                        $("#deletfooter").append(button);
-                        $('#deleteuser').modal('show');
-                        console.log(response);
-        }*/
-
-    
+                });    
 };
-
-//$('#deletename').click(function(){
-  //  $.sweetModal.confirm('Confirm please?', function() {
-	
-//});
-
-
-//});
-
    
 </script>
 <!-- /.content -->

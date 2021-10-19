@@ -13,7 +13,35 @@
 <script >
 
 $(document).ready(function() {
-    $('#table_id').DataTable();
+    $('#table_id').DataTable(
+        {
+            "language":{
+            "decimal":        "",
+    "emptyTable":     "No data available in table",
+    "info":           "Affichage _START_ a _END_ de _TOTAL_ entrées",
+    "infoEmpty":      "Showing 0 to 0 of 0 entrées",
+    "infoFiltered":   "(filtered from _MAX_ total entrées)",
+    "infoPostFix":    "",
+    "thousands":      ",",
+    "lengthMenu":     "afficher _MENU_ entrées",
+    "loadingRecords": "Chargement...",
+    "processing":     "Traitement...",
+    "search":         "recherche:",
+    "zeroRecords":    "Aucune donnée correspondante trouvée",
+    "paginate": {
+        "first":      "First",
+        "last":       "Last",
+        "next":       "suivant",
+        "previous":   "Précédent"
+    },
+    "aria": {
+        "sortAscending":  ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+    }
+
+        },
+        }
+    );
 });
 
 
@@ -35,8 +63,8 @@ $(document).ready(function() {
         <table id="table_id" class="display">
             <thead>
                  <tr>
-                    <th>id</th>
-                    <th>nom</th>
+                    
+                    <th>Nom d'utilisateur</th>
                     <th>role</th>
                     <th>definir comme administrateur </th>
                     <th>definir comme utilisateur </th>
@@ -44,10 +72,11 @@ $(document).ready(function() {
             
             
             </thead>
-            @foreach($users as $user)
-             <tbody> 
+            
+             <tbody>
+             @foreach($users as $user) 
                         <tr>
-                                    <td>{{ $user->id}}</td>
+                                    
                                     <td id="user">{{ $user->name}}</td>
                                     <td>{{ $user->role}}</td>
                                 
@@ -58,8 +87,9 @@ $(document).ready(function() {
                                         <button type="submit" class="btn btn-danger"id="iduser2" name="iduser"  value="{{$user->id}}" onclick="user({{$user->id}})">valider</button>    
                                         </th>
                         </tr>
+                        @endforeach
              </tbody>
-             @endforeach 
+              
         </table>     
     </div>
     <script type="text/javascript" >
@@ -73,7 +103,6 @@ $(document).ready(function() {
                     "iduser": id,
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response.success === true) {
                             sweetAlert("Done!", response.message, "success");
                             

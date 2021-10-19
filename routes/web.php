@@ -30,7 +30,7 @@ route::put('validationurll','Eventcontroller@test')->name('validationEvents');
 route::get('/addeventurl','Eventcontroller@display');
 route::get('displaydata','Eventcontroller@show');
 route::delete('deletedata','Eventcontroller@destroy')->name('deleteEvents');
-route::put('/update','Eventcontroller@update')->name('UpdateEvents');
+route::put('/updateevent','Eventcontroller@update')->name('UpdateEvents');
 route::post('/addequipe','EmployeController@store')->name('AddEquipes');
 route::delete('deletequipe','EmployeController@destroy')->name('deleteEquipe');
 route::post('adduser','EmployeController@adduser')->name('adduser');
@@ -44,9 +44,11 @@ route::post('admin','RoleController@admin')->name("admin");
 route::post('user','RoleController@user')->name("user");
 route::get('search','CongeController@search');
 route::get('modifierSolde','EmployeController@getUser');
+route::get('/editProfil/{id}','Eventcontroller@editProfil')->name("editProfil");
 
 Route::get('/soldeconge','SoldeCongeController@GetAllUsers');
 route::put('/update','SoldeCongeController@updateSoldeConge')->name('UpdateSolde');
+route::put('/ajouter','SoldeCongeController@updateRateSolde')->name('updateRateSolde');
 
 
 

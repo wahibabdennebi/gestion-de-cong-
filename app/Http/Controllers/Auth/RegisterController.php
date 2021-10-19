@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use \Datetime;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
     }
 
@@ -63,7 +65,23 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   //dd($data);
+        if ($data['image']) {
+            $file = $data['image'];
+            $filename = $file->getClientOriginalName();
+            date_default_timezone_set('Africa/Tunis');
+           // $date = date('m/d/Y h:i:s a', time());
+            $date=time();
+            $hash2 = md5($filename.$date);
+            //dd($hash2);
+            $hash = md5($filename).'_'.$date;
+            $destination = 'upload/images/';
+            $ext= $file->getClientOriginalExtension();
+            $mainFilename = $hash2.'.' .$ext ;
+            //dd($mainFilename);
+            $file->move($destination,$mainFilename);
+            
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -73,7 +91,8 @@ class RegisterController extends Controller
             'product' => $data['product'],
             'team' => $data['team'],
             'phone' => $data['phone'],
-            'equipe_id' => '0',
+            'equipe_id' => '1',
+            'image'=>$mainFilename,
         ]);
     }
 }

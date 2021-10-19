@@ -35,7 +35,7 @@ class EmployeController extends Controller
         }
 
         public function destroy(Request $request)
-        {
+        { //dd($request);
             $equipes = Equipe::find($request->id);
             $equipes->delete();
             Alert::success('Success ','Equipes successfully deleted!');
@@ -80,7 +80,7 @@ class EmployeController extends Controller
              }*/
              //dd($request);
              $result= array();
-        $users=User::where('equipe_id',0)->get();
+        $users=User::where('equipe_id',1)->get();
         foreach($users as $user)
         { 
            array_push($result,$user);
@@ -93,7 +93,7 @@ class EmployeController extends Controller
 }
                 public function deletename(Request $request){
                     $user= User::find($request->id);
-                    $user->equipe_id='0';
+                    $user->equipe_id='1';
                     $user->save();
                        // check data deleted or not
                         if ($user) {
